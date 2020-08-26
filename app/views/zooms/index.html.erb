@@ -1,0 +1,17 @@
+<h1>Listing articles</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th></th>
+  </tr>
+
+  <% @zooms.each do |zoom| %>
+    <tr>
+      <td><%= zoom.text %></td>
+      <td><%= zoom.uuid %></td>
+      <td><%= link_to 'Show', zoom_path(zoom) %></td>
+    </tr>
+  <% end %>
+</table>

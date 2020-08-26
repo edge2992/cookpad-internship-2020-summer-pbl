@@ -1,0 +1,2 @@
+class ZoomSchedule < ApplicationRecord
+end

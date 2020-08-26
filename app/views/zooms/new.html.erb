@@ -1,0 +1,27 @@
+<h1>Zoom招待作成画面</h1>
+<%= form_with scope: :zoom, url: zooms_path, local: true do |form| %>  
+
+    <p>
+      <%= form.label :text %><br>
+      <div class="small gray">
+      入力方法: zoomの招待textを入力します。<br>
+      入力例:
+      <pre>
+      Kazuya Isawaさんがあなたを予約されたZoomミーティングに招待しています。
+
+      トピック: マイミーティング
+      時間: 2020年8月26日 03:00 PM 大阪、札幌、東京
+
+      Zoomミーティングに参加する
+      https://us02web.zoom.us/j/84064231812?pwd=SzNFbS9uSjVRQzE5TU5RL0VnOXUyZz
+
+      ミーティングID: 840 6423 1813
+      パスコード: n7xEhaa
+      </pre>
+      <%= form.text_area :text %>
+    </p>
+  
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
