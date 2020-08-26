@@ -7,6 +7,8 @@ class ZoomsController < ApplicationController
     end
 
     def show
+        #TODO:: urlをhash値に変更する
+    #    @zoom = ZoomSchedule.find_by(uuid: params[:id])
         @zoom = ZoomSchedule.find(params[:id])
     end
 
@@ -15,10 +17,6 @@ class ZoomsController < ApplicationController
         @zoom.uuid = Digest::SHA1.hexdigest(Time.now.to_s)
         @zoom.save  
         redirect_to zooms_url
-    end
-
-    def list
-        @zoom = ZoomSchedule.where(uuid: params[:h]).first
     end
 
     private
