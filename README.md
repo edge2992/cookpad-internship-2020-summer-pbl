@@ -5,6 +5,9 @@ PBLのテーマ：一人暮らしをしている人の料理が楽しみにな�
 
 ポイント：一人暮らし、料理？
 
+技術系のメモ
+https://hackmd.io/@KGeWyKGtTVSWlZiGo73M6g/HJLeXPXmw
+
 
 ## 価値仮説
 
