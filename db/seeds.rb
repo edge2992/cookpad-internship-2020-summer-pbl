@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+recipes = Recipe.create!([{title: "焼き鳥で作るチーズダッカルビ" , url: 'https://entabe.jp/26419/yakitori-can-cheese-dak-galbi-easy-recipe', frequency: 0},
+{title: "サバ缶一分おつまみ", url: "https://cookpad.com/recipe/5465688", frequency: 10},
+{title: "サバ缶キムチ和え", url: "http://ainoouchigohan.blog.jp/archives/1065020112.html", frequency: 5}])
+

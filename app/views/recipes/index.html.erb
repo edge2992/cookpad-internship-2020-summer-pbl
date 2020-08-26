@@ -1,0 +1,23 @@
+<h1>Listing recipes</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>url</th>
+    <th>frequency</th>
+    <th></th>
+  </tr>
+
+  <% @recipes.each do |recipe| %>
+    <tr>
+      <td><%= recipe.title %></td>
+      <td><%= recipe.url %></td>
+      <td><%= recipe.frequency %></td> 
+      <td><%= link_to 'Show', recipe_path(recipe) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New Zoom', new_zoom_path %>
+<%= link_to 'Zoom一覧', zooms_path %>
+<%= link_to 'レシピ一覧', recipes_path %>
