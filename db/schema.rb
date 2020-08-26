@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(version: 2020_08_26_081823) do
   end
 
   create_table "zoom_recipes", force: :cascade do |t|
-    t.integer "zoom_schedules_id"
+    t.integer "zoom_schedule_id"
     t.integer "recipe_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id"], name: "index_zoom_recipes_on_recipe_id"
-    t.index ["zoom_schedules_id"], name: "index_zoom_recipes_on_zoom_schedules_id"
+    t.index ["zoom_schedule_id"], name: "index_zoom_recipes_on_zoom_schedule_id"
   end
 
   create_table "zoom_schedules", force: :cascade do |t|
