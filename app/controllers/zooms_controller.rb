@@ -35,6 +35,7 @@ class ZoomsController < ApplicationController
                 recipes = Recipe.order("RANDOM()").limit(RAND_GET_NUMBER)
             elsif Rails.env.production?
                 recipes = Recipe.order("RANDOM()").limit(RAND_GET_NUMBER)
+            end
             @zoom.uuid = Digest::SHA1.hexdigest(Time.now.to_s)
             @zoom.save!
             @zoom.recipes = recipes
