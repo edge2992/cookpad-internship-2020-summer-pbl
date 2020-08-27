@@ -1,0 +1,8 @@
+<h1>「みんなでクック」飲み会準備ページ</h1>
+
+<p>イベントが作成されました。以下のURLをメール等でみんなに知らせてあげましょう。このURLページでシェフがおすすめおつまみレシピをみなさんにお伝えします。</p>
+
+<textarea rows="1" onfocus="this.select();"><%= "/zoom/list/#{@zoom.uuid}" %></textarea></div>
+
+</br>
+<%= link_to '飲み会の会場に移動', "/zoom/list/#{@zoom.uuid}" %>

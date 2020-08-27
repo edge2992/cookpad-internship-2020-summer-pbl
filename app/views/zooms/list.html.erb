@@ -1,17 +1,20 @@
 
-<h1>Zoom飲み会招待画面</h1>
+<h1>リモート居酒屋「みんなでクック」会場</h1>
+この画面を飲み会の参加者に伝える
+
 <p>
-  <strong>Title:</strong>
+  <strong>zoom招待:</strong>
   <%= @zoom.text %>
 </p>
 
-<h2>Zoom飲み会にぴったりのおつまみレシピ</h2>
-<p>仲間とともに同じレシピでおつまみ作成に挑戦しよう。オンライン上でも同じ料理を味わえるかも？</p>
+<h2>「みんなでクック」のシェフ一押しのオススメレシピ</h2>
+<p>仲間と一緒に同じレシピでおつまみ作成に挑戦しよう。オンライン上でも同じ料理を味わえるかも？</p>
 <table>
   <tr>
     <th></th>
     <th>料理名</th>
-    <th>料理された回数</th>
+    <th>おつまみ作成予定</th>
+    <th>シェフのお勧め度</th>
   </tr>
 
   <% @recipes.each do |recipe| %>
@@ -19,6 +22,7 @@
       <td><%= check_box_tag recipe.id%></td>
       <td><%= link_to recipe.title, recipe.url %></td>
       <td><%= recipe.frequency %></td> 
+      <td>★★★★★</td>
     </tr>
   <% end %>
 </table>

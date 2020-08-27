@@ -1,17 +1,15 @@
-<h1>Listing zoom schedules</h1>
+<h1>リモート居酒屋「みんなでクック」予約一覧ページ</h1>
 
 <table>
   <tr>
-    <th>Title</th>
+    <th>created_at</th>
     <th>hash</th>
-    <th></th>
   </tr>
 
   <% @zooms.each do |zoom| %>
     <tr>
-      <td><%= zoom.text %></td>
+      <td><%= link_to zoom.created_at, "/zoom/list/#{zoom.uuid}" %></td>
       <td><%= zoom.uuid %></td>
-      <td><%= link_to 'Show', "/zoom/list/#{zoom.uuid}" %></td>
     </tr>
   <% end %>
 </table>

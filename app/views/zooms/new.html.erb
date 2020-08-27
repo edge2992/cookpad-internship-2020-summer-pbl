@@ -1,8 +1,10 @@
-<h1>Zoom招待作成画面</h1>
+<h1>リモート居酒屋「みんなでクック」予約フォーム</h1>
+リモート居酒屋「みんなでクック」は、オンラインでの飲み会の参加者におつまみレシピを伝授する居酒屋です。
+参加者がそれぞれレシピを作ってオンラインでシェアしよう！
 <%= form_with scope: :zoom, url: zooms_path, local: true do |form| %>  
 
     <p>
-      <%= form.label :text %><br>
+      <%= form.label :飲み会をホストする %><br>
       <div class="small gray">
       入力方法: zoomの招待textを入力します。<br>
       入力例:
@@ -22,7 +24,7 @@
     </p>
   
     <p>
-      <%= form.submit %>
+      <%= form.submit "シェフにおつまみレシピを聞く" %>
     </p>
   <% end %>
 

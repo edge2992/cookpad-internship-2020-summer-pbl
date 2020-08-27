@@ -16,6 +16,10 @@ class ZoomsController < ApplicationController
     #     @recipes = @zoom.recipes.order(frequency: "DESC")
     # end
 
+    def share
+        @zoom = ZoomSchedule.find_by(uuid: params[:uuid]) 
+    end
+
     def list
         @zoom = ZoomSchedule.find_by(uuid: params[:uuid])
         @recipes = @zoom.recipes.order(frequency: "DESC")
@@ -31,7 +35,8 @@ class ZoomsController < ApplicationController
             @zoom.save!
             @zoom.recipes = recipes
         end
-        redirect_to  "/zoom/list/#{@zoom.uuid}"
+        redirect_to "/zoom/share/#{@zoom.uuid}"
+        #redirect_to  "/zoom/list/#{@zoom.uuid}"
     end
 
     private

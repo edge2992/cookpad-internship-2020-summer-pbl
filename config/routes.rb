@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   resources :zooms
   resources :recipes
   get 'zoom/list/:uuid', to: 'zooms#list'
+  get 'zoom/share/:uuid', to: 'zooms#share'
+  
+  root 'zooms#new'
 end
