@@ -14,6 +14,17 @@ class RecipesController < ApplicationController
         redirect_to "/zoom/list/#{@zoom.uuid}"
     end
 
+    def increment
+        for buf in params.require(:recipe)[:increments] do
+            logger.debug(buf)
+            recipe = Recipe.find(buf)
+            recipe.frequency += 1
+            recipe.save!
+        end
+
+        redirect_to request.referer
+    end
+
     def index
         @recipes = Recipe.all.order(frequency: "DESC")
     end
@@ -22,4 +33,5 @@ class RecipesController < ApplicationController
     def recipe_params
         params.require(:recipe).permit(:title, :url)
     end
+
 end

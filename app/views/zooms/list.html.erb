@@ -17,16 +17,19 @@
     <th>シェフのお勧め度</th>
   </tr>
 
+  <%= form_with scope: :recipe, url: '/recipes/increment', local:true do |form| %>
   <% @recipes.each do |recipe| %>
     <tr>
-      <td><%= check_box_tag recipe.id%></td>
+      <td><%= form.check_box :increments, { multiple: true, include_hidden:false }, recipe.id %></td>
       <td><%= link_to recipe.title, recipe.url %></td>
       <td><%= recipe.frequency %></td> 
       <td>★★★★★</td>
     </tr>
   <% end %>
 </table>
-
+<%= form.submit "料理予定をみんなに伝える"%>
+<%end%>
+</br>
 <%= link_to 'レシピを追加する', new_recipe_path %>
 </br>
 <!-- シェア用途にOGPを設定しておこう-->
