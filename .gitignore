@@ -115,5 +115,3 @@ yarn-debug.log*
 
 # End of https://www.toptal.com/developers/gitignore/api/rails
 
-# original
-config/database.yml
