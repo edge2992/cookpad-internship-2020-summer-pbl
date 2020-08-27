@@ -1,44 +1,43 @@
-<h1>リモート居酒屋「みんなでクック」イベントセッティング画面</h1>
-リモート居酒屋「みんなでクック」は、オンラインでの飲み会の参加者におつまみレシピを伝授する居酒屋です。
-参加者がそれぞれレシピを作ってオンラインでできた料理をシェアしよう！
+    <div class="features-clean">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">リモート居酒屋「みんなでクック」イベントセッティング画面</h2>
+                <p class="text-center">リモート居酒屋「みんなでクック」は、オンラインでの飲み会の参加者におつまみレシピを伝授する居酒屋です。参加者がそれぞれレシピを作ってオンラインでできた料理をシェアしよう！ </p>
+            </div>
+            <div class="row features">
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-clock-o icon"></i>
+                    <h3 class="name">Step1</h3>
+                    <p class="description">ズーム飲み会をセッテイングして、飲み会をする仲間に知らせる！</p>
+                </div>
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-star-o icon"></i>
+                    <h3 class="name">Step2</h3>
+                    <p class="description">ズーム飲み会に行く前に「みんなでクック」のシェフのおすすめおつまみレシピでクッキング！</p>
+                </div>
+                <div class="col-sm-6 col-lg-4 item"><i class="fa fa-glass icon"></i>
+                    <h3 class="name">Step3</h3>
+                    <p class="description">ズームで作った料理を自慢する！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-clean" style="background-color: rgb(255,255,255);">
+        <%= form_with scope: :zoom, url: zooms_path, local: true do |form| %>  
+            <h2 class="text-center">飲み会をホストする</h2>
+               <p class="text-center">
+               例：</br></br>
+      Kazuya Isawaさんがあなたを予約されたZoomミーティングに招待しています。</br>
 
-<h2>手順</h2>
-<h3>Step1</h3>
-<p>ズーム飲み会をセッテイングして、飲み会をする仲間に知らせる！</p>
+      トピック: マイミーティング</br>
+      時間: 2020年8月26日 03:00 PM 大阪、札幌、東京</br>
 
-<h3>Step2</h3>
-<p>ズーム飲み会に行く前にお勧めレシピでクッキング！</p>
+      Zoomミーティングに参加する</br>
+      https://us02web.zoom.us/j/84064231812?pwd=SzNFbS9uSjVRQzE5TU5RL0VnOXUyZz</br>
 
-<h3>Step3</h3>
-<p>ズームで作った料理を自慢する！</p>
+      ミーティングID: 840 6423 1813</br>
+      パスコード: n7xEhaa</br>
+      </p>
+            <div class="form-group text-center""><%= form.text_area :text, rows: "14" %></div>
+            <div class="form-group text-center"><%= form.submit "シェフにおつまみレシピを聞く", class: "btn btn-primary" %></div>
+        <% end %>
+    </div>
 
-<%= form_with scope: :zoom, url: zooms_path, local: true do |form| %>  
-
-    <p>
-      <h2><%= form.label :飲み会をホストする %><br></h2>
-      <div class="small gray">
-      入力方法: zoomの招待textを入力します。<br>
-      入力例:
-      <pre>
-      Kazuya Isawaさんがあなたを予約されたZoomミーティングに招待しています。
-
-      トピック: マイミーティング
-      時間: 2020年8月26日 03:00 PM 大阪、札幌、東京
-
-      Zoomミーティングに参加する
-      https://us02web.zoom.us/j/84064231812?pwd=SzNFbS9uSjVRQzE5TU5RL0VnOXUyZz
-
-      ミーティングID: 840 6423 1813
-      パスコード: n7xEhaa
-      </pre>
-      <%= form.text_area :text %>
-    </p>
-  
-    <p>
-      <%= form.submit "シェフにおつまみレシピを聞く" %>
-    </p>
-  <% end %>
-
-<%= link_to 'New Zoom', new_zoom_path %>
-<%= link_to 'Zoom一覧', zooms_path %>
-<%= link_to 'レシピ一覧', recipes_path %>

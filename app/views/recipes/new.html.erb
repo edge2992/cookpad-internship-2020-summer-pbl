@@ -1,5 +1,10 @@
-<h1>レシピ追加画面</h1>
-飲み会メンバーもみんなにお勧めレシピを伝えよう
+<div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                <h1>レシピ追加画面</h1>
+                <p>飲み会メンバーもみんなにお勧めレシピを伝えよう</p>
+
 <%= form_with scope: :recipe, url: recipes_path, local: true do |form| %>  
 
     <p>
@@ -31,7 +36,9 @@
       <%= form.submit "レシピをシェアする"%>
     </p>
   <% end %>
-
-<%= link_to 'New Zoom', new_zoom_path %>
-<%= link_to 'Zoom一覧', zooms_path %>
-<%= link_to 'レシピ一覧', recipes_path %>
+  <%= link_to 'Zoom一覧', zooms_path %>
+                </div>
+            </div>
+            
+        </div>
+</div>
