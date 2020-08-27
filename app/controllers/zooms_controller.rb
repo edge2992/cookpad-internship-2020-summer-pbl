@@ -9,21 +9,29 @@ class ZoomsController < ApplicationController
     def new
     end
 
-    def show
-        #TODO:: urlをhash値に変更する
-    #    @zoom = ZoomSchedule.find_by(uuid: params[:id])
-        @zoom = ZoomSchedule.find(params[:id])
-        @recipes = @zoom.recipes
+    # def show
+    #     #TODO:: urlをhash値に変更する
+    # #    @zoom = ZoomSchedule.find_by(uuid: params[:id])
+    #     @zoom = ZoomSchedule.find(params[:id])
+    #     @recipes = @zoom.recipes.order(frequency: "DESC")
+    # end
+
+    def list
+        @zoom = ZoomSchedule.find_by(uuid: params[:uuid])
+        @recipes = @zoom.recipes.order(frequency: "DESC")
     end
+
 
     def create
         #TODO:: 全部取得してるからヤバそうだが
-        @recipes = Recipe.order("RANDOM()").limit(RAND_GET_NUMBER)
         @zoom = ZoomSchedule.new(zoom_params)
-        @zoom.uuid = Digest::SHA1.hexdigest(Time.now.to_s)
-        @zoom.save  
-        @zoom.recipes = @recipes
-        redirect_to zoom_path(@zoom)
+        ZoomSchedule.transaction do
+            recipes = Recipe.order("RANDOM()").limit(RAND_GET_NUMBER)
+            @zoom.uuid = Digest::SHA1.hexdigest(Time.now.to_s)
+            @zoom.save!
+            @zoom.recipes = recipes
+        end
+        redirect_to  "/zoom/list/#{@zoom.uuid}"
     end
 
     private

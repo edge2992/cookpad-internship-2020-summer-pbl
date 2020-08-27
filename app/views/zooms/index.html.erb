@@ -11,7 +11,7 @@
     <tr>
       <td><%= zoom.text %></td>
       <td><%= zoom.uuid %></td>
-      <td><%= link_to 'Show', zoom_path(zoom) %></td>
+      <td><%= link_to 'Show', "/zoom/list/#{zoom.uuid}" %></td>
     </tr>
   <% end %>
 </table>

@@ -1,0 +1,35 @@
+
+<h1>Zoom飲み会招待画面</h1>
+<p>
+  <strong>Title:</strong>
+  <%= @zoom.text %>
+</p>
+
+<h2>Zoom飲み会にぴったりのおつまみレシピ</h2>
+<p>仲間とともに同じレシピでおつまみ作成に挑戦しよう。オンライン上でも同じ料理を味わえるかも？</p>
+<table>
+  <tr>
+    <th></th>
+    <th>料理名</th>
+    <th>料理された回数</th>
+  </tr>
+
+  <% @recipes.each do |recipe| %>
+    <tr>
+      <td><%= check_box_tag recipe.id%></td>
+      <td><%= link_to recipe.title, recipe.url %></td>
+      <td><%= recipe.frequency %></td> 
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'レシピを追加する', new_recipe_path %>
+</br>
+<!-- シェア用途にOGPを設定しておこう-->
+<h2>シェア</h2>
+<div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="<%= zoom_path(@zoom) %>" data-color="default" data-size="large" data-count="false" style="display: none;"></div>
+ 
+ </br>
+<%= link_to 'Back', zooms_path %>
+
+<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>

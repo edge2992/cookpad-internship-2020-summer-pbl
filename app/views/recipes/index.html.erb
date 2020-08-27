@@ -1,19 +1,16 @@
-<h1>Listing recipes</h1>
-
+<h1>Zoom飲み会でよく作られているレシピ一覧ページ</h1>
 <table>
   <tr>
-    <th>Title</th>
-    <th>url</th>
-    <th>frequency</th>
-    <th></th>
+    <th>料理名</th>
+    <th>レシピへのリンク</th>
+    <th>料理された回数</th>
   </tr>
 
   <% @recipes.each do |recipe| %>
     <tr>
       <td><%= recipe.title %></td>
-      <td><%= recipe.url %></td>
+      <td><%= link_to 'Show', recipe.url %></td>
       <td><%= recipe.frequency %></td> 
-      <td><%= link_to 'Show', recipe_path(recipe) %></td>
     </tr>
   <% end %>
 </table>
