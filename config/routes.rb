@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :recipes
   get 'zoom/list/:uuid', to: 'zooms#list'
   get 'zoom/share/:uuid', to: 'zooms#share'
-  post 'recipes/increment', to: 'recipes#increment'
+  post 'recipes/increment/:uuid', to: 'recipes#increment'
   
   root 'zooms#new'
 end

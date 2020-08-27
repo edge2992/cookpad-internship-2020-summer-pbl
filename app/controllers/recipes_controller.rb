@@ -10,19 +10,30 @@ class RecipesController < ApplicationController
             @recipe.save!
             @zoom = ZoomSchedule.find_by(uuid: params[:recipe][:uuid])
             @recipe.zoom_schedules = [@zoom]
+            ref = @recipe.zoom_recipes.where(zoom_schedule_id: @zoom.id).first
+            ref.frequency = 0
+            ref.save!
         end
         redirect_to "/zoom/list/#{@zoom.uuid}"
     end
 
     def increment
-        for buf in params.require(:recipe)[:increments] do
-            logger.debug(buf)
-            recipe = Recipe.find(buf)
-            recipe.frequency += 1
-            recipe.save!
+        zoom = ZoomSchedule.find_by(uuid: params[:uuid])
+        
+        unless params[:recipe].blank?
+            logger.debug(params[:recipe])
+            for buf in params.require(:recipe)[:increments] do
+                logger.debug(buf)
+                recipe = Recipe.find(buf)
+                ref = recipe.zoom_recipes.where(zoom_schedule_id: zoom.id).first
+                logger.debug(ref)
+                ref.frequency += 1
+                recipe.frequency += 1
+                recipe.save!
+                ref.save!
+            end
         end
-
-        redirect_to request.referer
+        redirect_to "/zoom/list/#{zoom.uuid}" 
     end
 
     def index

@@ -11,3 +11,7 @@ recipes = Recipe.create!([{title: "焼き鳥で作るチーズダッカルビ" ,
 {title: "サバ缶一分おつまみ", url: "https://cookpad.com/recipe/5465688", frequency: 10},
 {title: "サバ缶キムチ和え", url: "http://ainoouchigohan.blog.jp/archives/1065020112.html", frequency: 5}])
 
+
+10.times do |i|
+    Recipe.create!({title: "サバ缶#{i}分おつまみ", url: "https://cookpad.com/recipe/5465688", frequency: rand(i)})
+end

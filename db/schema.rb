@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_26_081823) do
+ActiveRecord::Schema.define(version: 2020_08_27_033304) do
 
   create_table "recipes", force: :cascade do |t|
     t.string "title"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_08_26_081823) do
     t.integer "recipe_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "frequency"
     t.index ["recipe_id"], name: "index_zoom_recipes_on_recipe_id"
     t.index ["zoom_schedule_id"], name: "index_zoom_recipes_on_zoom_schedule_id"
   end

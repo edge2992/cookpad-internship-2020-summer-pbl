@@ -34,6 +34,10 @@ class ZoomsController < ApplicationController
             @zoom.uuid = Digest::SHA1.hexdigest(Time.now.to_s)
             @zoom.save!
             @zoom.recipes = recipes
+            for id in recipes.ids do
+                ref = @zoom.zoom_recipes.where(recipe_id: id)
+                ref.update(frequency: 0)
+            end
         end
         redirect_to "/zoom/share/#{@zoom.uuid}"
         #redirect_to  "/zoom/list/#{@zoom.uuid}"
