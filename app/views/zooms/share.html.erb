@@ -2,7 +2,7 @@
 
 <p>イベントが作成されました。以下のURLをメール等でみんなに知らせてあげましょう。このURLページで「みんなでクック」のシェフがみなさんにおすすめのおつまみレシピをお伝えします。</p>
 
-<textarea rows="1" onfocus="this.select();"><%= "https://www.Minna_de_Cooked.com/zoom/list/#{@zoom.uuid}" %></textarea></div>
+<textarea rows="1" onfocus="this.select();"><%= "https://minnadecooked.herokuapp.com/zoom/list/#{@zoom.uuid}" %></textarea></div>
 
 </br>
 <%= link_to '飲み会の会場に移動', "/zoom/list/#{@zoom.uuid}" %>

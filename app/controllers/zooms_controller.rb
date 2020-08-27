@@ -31,7 +31,10 @@ class ZoomsController < ApplicationController
         #TODO:: 全部取得してるからヤバそうだが
         @zoom = ZoomSchedule.new(zoom_params)
         ZoomSchedule.transaction do
-            recipes = Recipe.order("RANDOM()").limit(RAND_GET_NUMBER)
+            if Rails.env.development?
+                recipes = Recipe.order("RANDOM()").limit(RAND_GET_NUMBER)
+            elsif Rails.env.production?
+                recipes = Recipe.order("RANDOM()").limit(RAND_GET_NUMBER)
             @zoom.uuid = Digest::SHA1.hexdigest(Time.now.to_s)
             @zoom.save!
             @zoom.recipes = recipes
