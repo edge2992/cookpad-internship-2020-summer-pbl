@@ -22,6 +22,7 @@ class ZoomsController < ApplicationController
 
     def list
         @zoom = ZoomSchedule.find_by(uuid: params[:uuid])
+        @zoom_url = URI.extract(@zoom.text, %w[http https]).first
         @recipes = @zoom.recipes.order(frequency: "DESC")
     end
 

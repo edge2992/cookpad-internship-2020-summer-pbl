@@ -1,10 +1,18 @@
 
 <h1>リモート居酒屋「みんなでクック」会場</h1>
-この画面を飲み会の参加者に伝える
+
+<p>リモート居酒屋「みんなでクック」は、オンラインでの飲み会の参加者におつまみレシピを伝授する居酒屋です。 参加者がそれぞれレシピを作ってオンラインでできた料理をシェアしよう！</p>
+
+<%= image_tag 'drinking_on_zoom.jpg', :size => "400x300" %>
 
 <p>
   <strong>zoom招待:</strong>
+  </br>
+  <a href="<%= @zoom_url %>"><%= @zoom_url %></a>
+
+  </br></br>
   <%= @zoom.text %>
+  </br>
 </p>
 
 <h2>「みんなでクック」のシェフ一押しのオススメレシピ</h2>
@@ -12,29 +20,38 @@
 <%= form_with scope: :recipe, url: "/recipes/increment/#{@zoom.uuid}", local:true do |form| %>
 <table>
   <tr>
-    <th></th>
+    <th>作ってみる！</th>
     <th>料理名</th>
-    <th>おつまみ作成予定</th>
+    <th>みんなのおつまみ作成予定</th>
     <th>シェフのお勧め度</th>
   </tr>
   
   <% @recipes.each do |recipe| %>
     <tr>
       <td><%= form.check_box :increments, { multiple: true, include_hidden:false }, recipe.id %></td>
-      <td><%= link_to recipe.title, recipe.url %></td>
+      <!--<td><%= link_to recipe.title, recipe.url %></td>-->
+      <td>
+      <iframe 
+  class="hatenablogcard" 
+  style="width:100%;height:155px;max-width:680px;" 
+  title=<%= recipe.title%> 
+  src="https://hatenablog-parts.com/embed?url=<%= recipe.url %>" 
+  width="300" height="150" frameborder="0" scrolling="no">
+</iframe>
+</td>
       <td><%= recipe.zoom_recipes.where(zoom_schedule_id: @zoom.id).first.frequency %></td> 
       <td>★★★★★</td>
     </tr>
   <% end %>
 </table>
-<%= form.submit "料理予定をみんなに伝える"%>
+<%= form.submit "みんなでクックに持ち込む予定の料理をみんなに伝える"%>
 <%end%>
 </br>
-<%= link_to 'レシピを追加する', new_recipe_path %>
+<%= link_to '自分のオススメレシピをみんなと共有する', new_recipe_path %>
 </br>
 <!-- シェア用途にOGPを設定しておこう-->
 <h2>シェア</h2>
-<div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="<%= zoom_path(@zoom) %>" data-color="default" data-size="large" data-count="false" style="display: none;"></div>
+<div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url=<%= "https://www.Minma_de_Cooked.com/zoom/list/#{@zoom.uuid}" %> data-color="default" data-size="large" data-count="false" style="display: none;"></div>
  
  </br>
 <%= link_to 'Back', zooms_path %>
