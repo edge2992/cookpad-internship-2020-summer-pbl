@@ -3,8 +3,8 @@
             <div class="row">
             <div class="col-md-12">
                 <h1>「みんなでクック」飲み会準備ページ</h1>
-                <p>イベントが作成されました。以下のURLをメール等でみんなに知らせてあげましょう。このURLページで「みんなでクック」のシェフがみなさんにおすすめのおつまみレシピをお伝えします。</p>
-                <textarea rows="1" onfocus="this.select();"><%= "https://minnadecooked.herokuapp.com/zoom/list/#{@zoom.uuid}" %></textarea></div>
+                <p>イベントが作成されました。以下のURLをメール等でみんなに知らせてあげましょう。</br>このURLページで「みんなでクック」のシェフがみなさんにおすすめのおつまみレシピをお伝えします。</p>
+                <textarea rows="1" cols="80" onfocus="this.select();"><%= "https://minnadecooked.herokuapp.com/zoom/list/#{@zoom.uuid}" %></textarea></div>
                 </br>
                 <%= link_to '飲み会の会場に移動', "/zoom/list/#{@zoom.uuid}" %>
                 </div>
