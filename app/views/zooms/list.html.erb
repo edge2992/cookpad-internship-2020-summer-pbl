@@ -21,8 +21,8 @@
                 <div class="col-md-12">
                     <h2 class="text-center">「みんなでクック」のシェフ一押しのオススメレシピ</h3>
                     <p class="text-center">仲間と一緒に同じレシピでおつまみ作成に挑戦しよう。オンライン上でも同じ料理を味わえるかも？</br></p>
-                    <div class="table-responsive">
                     <%= form_with scope: :recipe, url: "/recipes/increment/#{@zoom.uuid}", local:true do |form| %>
+                    <div class="table-responsive">
                     <table class="table">
                       <thead>
                       <tr>
