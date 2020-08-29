@@ -39,9 +39,6 @@ class RecipesController < ApplicationController
                 @recipe.save!
                 @zoom = ZoomSchedule.find_by!(uuid: params[:recipe][:uuid])
                 @recipe.zoom_schedules = [@zoom]
-                ref = @recipe.zoom_recipes.where(zoom_schedule_id: @zoom.id).first
-                ref.frequency = 0
-                ref.save!
             end
             redirect_to "/zoom/list/#{@zoom.uuid}", notice: 'Recipe was successfully created.'
         else
