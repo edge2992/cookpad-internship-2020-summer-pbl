@@ -1,44 +1,13 @@
 <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                <h1>レシピ追加画面</h1>
-                <p>飲み会メンバーもみんなにお勧めレシピを伝えよう</p>
-
-<%= form_with scope: :recipe, url: recipes_path, local: true do |form| %>  
-
-    <p>
-      <%= form.label :title %><br>
-      <div class="small gray">
-      入力方法: レシピ名を入力します。<br>
-      入力例:
-      <pre>
-      一分簡単じゃがいもおつまみレシピ
-      </pre>
-      <%= form.text_area :title %>
-    </p>
-  
-    <p>
-
-    <p>
-      <%= form.label :url %><br>
-      <div class="small gray">
-      入力方法: レシピのURLを入力します。<br>
-      入力例:
-      <pre>
-      https://delishkitchen.tv/recipes/172822100522828268
-      </pre>
-      <%= form.text_area :url %>
-    </p>
-    <%= form.hidden_field :uuid, :value => @before[:uuid] %>
-  
-    <p>
-      <%= form.submit "レシピをシェアする"%>
-    </p>
-  <% end %>
-  <%= link_to 'Zoom一覧', zooms_path %>
-                </div>
-            </div>
-            
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>レシピ追加画面</h1>
+        <p>飲み会メンバーもみんなにお勧めレシピを伝えよう</p>
+        <p id="notice"><%= notice %></p>
+        <%= render 'form', recipe_form: @recipe_form, uuid: @uuid %>
+        <%= link_to 'Zoom一覧', zooms_path %>
+      </div>
+    </div>
+  </div>
 </div>
