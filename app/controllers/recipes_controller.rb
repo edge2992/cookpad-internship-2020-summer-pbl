@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
         #TODO:: zoomのuuidがないときはnewページに遷移しないように設定する
         before = Rails.application.routes.recognize_path(request.referer)
         if before[:uuid].blank?
-            redirect_to "/zooms/new"
+            redirect_to "/zooms/new", notice: 'セッティングされた飲み会が無効です'
         end
         @uuid = before[:uuid]
         @recipe_form = RecipeCreateForm.new
@@ -15,6 +15,8 @@ class RecipesController < ApplicationController
             unless params[:id].blank?
                 Recipe.find(params[:id]).increment!(:frequency, 1)
                 zoom.zoom_recipes.where(recipe_id: params[:id]).first.increment!(:frequency, 1)
+                redirect_to "/zoom/list/#{zoom.uuid}", notice: 'みんなとおつまみ作成予定を共有しました'
+                return
             end
         end
         redirect_back(fallback_location: new_zoom_url)
@@ -56,9 +58,4 @@ class RecipesController < ApplicationController
     def recipe_form_params
         params.require(:recipe).permit(:title, :url)
     end
-
-    def recipe_poll_params
-        params.permit(:id, :uuid)
-    end
-
 end
