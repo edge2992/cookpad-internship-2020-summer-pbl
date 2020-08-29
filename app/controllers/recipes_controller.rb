@@ -55,7 +55,7 @@ class RecipesController < ApplicationController
     end
 
     def index
-        @recipes = Recipe.all.order(frequency: "DESC")
+        @recipes = Recipe.paginate(page: params[:page], per_page: 3)
     end
 
     private

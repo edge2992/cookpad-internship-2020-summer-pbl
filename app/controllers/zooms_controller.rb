@@ -13,6 +13,8 @@ class ZoomsController < ApplicationController
     end
 
     def new
+        recipe_id = Recipe.pluck(:id).sample(1).first
+        @recipe = Recipe.find(recipe_id)
     end
 
     def share
@@ -41,12 +43,13 @@ class ZoomsController < ApplicationController
         
         if @zoom.valid?
             @zoom.save
-            recipes = Recipe.order("RANDOM()").limit(RAND_GET_NUMBER)
+            recipe_ids = Recipe.pluck(:id).sample(RAND_GET_NUMBER)
+            recipes = Recipe.find(recipe_ids)
             ZoomRecipe.transaction do
                 @zoom.recipes = recipes
             end
         else
-            redirect_to new_zoom_url, alert: "Zoomセッテイングに失敗しました"
+            redirect_to "/zooms/new", alert: "Zoomセッテイングに失敗しました"
             return
         end
         redirect_to "/zooms/share/#{@zoom.uuid}"

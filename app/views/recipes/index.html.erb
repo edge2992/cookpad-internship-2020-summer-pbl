@@ -24,6 +24,7 @@
               <% end %>
             </tbody>
           </table>
+            <%= will_paginate @recipes, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
         </div>
       </div>
     </div>
