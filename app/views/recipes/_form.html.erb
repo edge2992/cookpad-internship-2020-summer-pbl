@@ -1,39 +1,38 @@
 <%= form_with(model: recipe_form, scope: :recipe, url: recipes_path, local: true) do |form| %>
-  <% if recipe_form.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(recipe_form.errors.count, "error") %> prohibited this recipe from being saved:</h2>
 
-      <ul>
-        <% recipe_form.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<% if recipe_form.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(recipe_form.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+  <ul>
+    <% recipe_form.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
 <p>
-    <%= form.label :title %><br>
-    <div class="small gray">
-        入力方法: レシピ名を入力します。<br>
-        入力例:
-        <pre>一分簡単じゃがいもおつまみレシピ</pre>
-        <%= form.text_area :title %>
-    </div>
+  <%= form.label :title %><br>
+  <div class="small gray">
+    入力方法: レシピ名を入力します。<br>
+    入力例:
+    <pre>一分簡単じゃがいもおつまみレシピ</pre>
+    <%= form.text_area :title %>
+  </div>
 </p>
 
 <p>
+  <%= form.label :url %><br>
+  <div class="small gray">
+    入力方法: レシピのURLを入力します。<br>
+    入力例:
+    <pre>https://delishkitchen.tv/recipes/172822100522828268</pre>
+  </div>
+  <%= form.text_area :url %>
+</p>
 
-    <p>
-        <%= form.label :url %><br>
-        <div class="small gray">
-            入力方法: レシピのURLを入力します。<br>
-            入力例:
-            <pre>https://delishkitchen.tv/recipes/172822100522828268</pre>
-        </div>
-        <%= form.text_area :url %>
-    </p>
-    <%= form.hidden_field :uuid, :value => uuid %>
-
-    <p>
-        <%= form.submit "レシピをシェアする"%>
-    </p>
-    <% end %>
+<p>
+  <%= form.submit "レシピをシェアする"%>
+</p>
+<% end %>
