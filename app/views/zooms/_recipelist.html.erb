@@ -1,0 +1,26 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>作ってみる！</th>
+                <th>料理名</th>
+                <th>みんなのおつまみ作成予定</th>
+                <th>シェフのお勧め度</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% recipes.each do |recipe| %>
+            <tr>
+                <td><%= button_to 'このレシピに挑戦！', {controller: 'recipes', action: 'poll'}, {method: :post, :params => {id: recipe.id, uuid: zoom.uuid}} %> </td>
+                <td>
+                    <iframe class="hatenablogcard" style="width:100%;height:155px;max-width:680px;"
+                        title=<%= recipe.title%> src="https://hatenablog-parts.com/embed?url=<%= recipe.url %>"
+                        width="300" height="150" frameborder="0" scrolling="no"></iframe>
+                </td>
+                <td><%= recipe.zoom_recipes.where(zoom_schedule_id: zoom.id).first.frequency %></td>
+                <td>★★★★★</td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

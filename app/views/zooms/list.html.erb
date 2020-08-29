@@ -1,68 +1,40 @@
-
-<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer">
+</script>
 <p id="notice"><%= notice %></p>
- <div class="highlight-clean">
-        <div class="container">
-            <div class="intro">
-                <h2 class="text-center">リモート居酒屋「みんなでクック」会場</h2>
-                <p class="text-center">リモート居酒屋「みんなでクック」は、オンラインでの飲み会の参加者におつまみレシピを伝授する居酒屋です。 </br>参加者がそれぞれレシピを作ってオンラインでできた料理をシェアしよう！</p>
-                <div class="text-center">
-                <%= image_tag 'drinking_on_zoom.jpg', :size => "400x300" %>
-               <h2>Zoom招待</h3> 
-               <p><a href="<%= @zoom_url %>"><%= @zoom_url %></a></br></br></p>
-               <p><%= @zoom.text %></p>
-               </div>
-            </div>
-        </div>
+<div class="highlight-clean">
+  <div class="container">
+    <div class="intro">
+      <h2 class="text-center">リモート居酒屋「みんなでクック」会場</h2>
+      <p class="text-center">リモート居酒屋「みんなでクック」は、オンラインでの飲み会の参加者におつまみレシピを伝授する居酒屋です。 </br>参加者がそれぞれレシピを作ってオンラインでできた料理をシェアしよう！
+      </p>
+      <div class="text-center">
+        <%= image_tag 'drinking_on_zoom.jpg', :size => "400x300" %>
+        <h2>Zoom招待</h3>
+          <p><a href="<%= @zoom_url %>"><%= @zoom_url %></a></br></br></p>
+          <p><%= @zoom.text %></p>
+      </div>
     </div>
-    <div class="highlight-clean">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="text-center">「みんなでクック」のシェフ一押しのオススメレシピ</h3>
-                    <p class="text-center">仲間と一緒に同じレシピでおつまみ作成に挑戦しよう。オンライン上でも同じ料理を味わえるかも？</br></p>
-                    <%= form_with scope: :recipe, url: "/recipes/increment/#{@zoom.uuid}", local:true do |form| %>
-                    <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                      <tr>
-                        <th>作ってみる！</th>
-                        <th>料理名</th>
-                        <th>みんなのおつまみ作成予定</th>
-                        <th>シェフのお勧め度</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <% @recipes.each do |recipe| %>
-                        <tr>
-                          <td><%= form.check_box :increments, { multiple: true, include_hidden:false }, recipe.id %></td>
-                          <!--<td><%= link_to recipe.title, recipe.url %></td>-->
-                          <td>
-                          <iframe class="hatenablogcard" style="width:100%;height:155px;max-width:680px;" title=<%= recipe.title%> src="https://hatenablog-parts.com/embed?url=<%= recipe.url %>" width="300" height="150" frameborder="0" scrolling="no"></iframe>
-                          </td>
-                          <td><%= recipe.zoom_recipes.where(zoom_schedule_id: @zoom.id).first.frequency %></td> 
-                          <td>★★★★★</td>
-                        </tr>
-                      <% end %>
-                      </tbody>
-                      </table>
-                    </div>
-                    </br>
-                    <div class="text-center">
-                    <%= form.submit "☑︎みんなでクックに持ち込む予定の料理をみんなに伝える", class: "btn"%>
-                    </div>
-                      <%end%>
-                      </br>
-                      <p>または、<%= link_to '自分のオススメおつまみレシピをみんなと共有する', new_recipe_path %></p>
-                      </br>
-<h2>シェア</h2>
-<div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url=<%= "https://minnadecooked.herokuapp.com/zoom/list/#{@zoom.uuid}" %> data-color="default" data-size="large" data-count="false" style="display: none;"></div>
-</br>
-<%= link_to 'Back', zooms_path %>
+  </div>
+</div>
+<div class="highlight-clean">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="text-center">「みんなでクック」のシェフ一押しのオススメレシピ</h3>
+          <p class="text-center">仲間と一緒に同じレシピでおつまみ作成に挑戦しよう。オンライン上でも同じ料理を味わえるかも？</br></p>
+          <%= render 'recipelist', increment_form: @increment_form, recipes: @recipes, zoom: @zoom %>
+          </br>
+          <p>または、<%= link_to '自分のオススメおつまみレシピをみんなと共有する', new_recipe_path %></p>
+          </br>
+          <h2>シェア</h2>
+          <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3"
+            data-url=<%= "https://minnadecooked.herokuapp.com/zoom/list/#{@zoom.uuid}" %> data-color="default"
+            data-size="large" data-count="false" style="display: none;"></div>
+          </br>
+          <%= link_to 'Back', zooms_path %>
 
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    </div>
-
+  </div>
+</div>
+</div>

@@ -9,6 +9,18 @@ class RecipesController < ApplicationController
         @recipe_form = RecipeCreateForm.new
     end
 
+    def poll
+        unless params[:uuid].blank?
+            zoom = ZoomSchedule.find_by!(uuid: params[:uuid])
+            unless params[:id].blank?
+                Recipe.find(params[:id]).increment!(:frequency, 1)
+                zoom.zoom_recipes.where(recipe_id: params[:id]).first.increment!(:frequency, 1)
+            end
+        end
+        redirect_back(fallback_location: new_zoom_url)
+    end
+
+
     def create
         @recipe_form = RecipeCreateForm.new
         @recipe_form.apply(recipe_form_params)
@@ -20,6 +32,7 @@ class RecipesController < ApplicationController
 
         if @recipe_form.valid?
             @recipe = Recipe.new(@recipe_form.to_attributes.merge(frequency: 0))
+            #TODO: refも更新しているのでそれも考慮する
             Recipe.transaction do
                 @recipe.save!
                 @zoom = ZoomSchedule.find_by!(uuid: params[:recipe][:uuid])
@@ -35,21 +48,6 @@ class RecipesController < ApplicationController
         end
     end
 
-    def increment
-        unless params[:recipe].blank?
-            for buf in params.require(:recipe)[:increments] do
-                zoom = ZoomSchedule.find_by!(uuid: params[:uuid])
-                recipe = Recipe.find!(buf)
-                ref = recipe.zoom_recipes.where!(zoom_schedule_id: zoom.id).first
-                ref.frequency += 1
-                recipe.frequency += 1
-                recipe.save!
-                ref.save!
-            end
-        end
-        redirect_back(fallback_location: new_zoom)
-    end
-
     def index
         @recipes = Recipe.all.order(frequency: "DESC")
     end
@@ -57,6 +55,10 @@ class RecipesController < ApplicationController
     private
     def recipe_form_params
         params.require(:recipe).permit(:title, :url)
+    end
+
+    def recipe_poll_params
+        params.permit(:id, :uuid)
     end
 
 end
