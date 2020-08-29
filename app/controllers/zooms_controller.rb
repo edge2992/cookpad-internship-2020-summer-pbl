@@ -31,7 +31,7 @@ class ZoomsController < ApplicationController
                 @zoom.recipes = recipes
             end
         else
-            redirect_to new_zoom_url, notice: "zoomセッテイングに失敗しました"
+            redirect_to new_zoom_url, alert: "Zoomセッテイングに失敗しました"
             return
         end
         redirect_to "/zoom/share/#{@zoom.uuid}"

@@ -2,7 +2,8 @@ class RecipesController < ApplicationController
     def new
         before = Rails.application.routes.recognize_path(request.referer)
         if before[:uuid].blank?
-            redirect_to "/zooms/new", notice: 'セッティングされた飲み会が無効です'
+            flash.now[:alert] = 'セッティングされた飲み会が無効です'
+            redirect_to "/zooms/new", alert: "セッティングされた飲み会が無効です"
         else
             session[:uuid] = before[:uuid]
             @recipe_form = RecipeCreateForm.new
@@ -18,10 +19,10 @@ class RecipesController < ApplicationController
                 redirect_to "/zoom/list/#{zoom.uuid}", notice: 'みんなとおつまみ作成予定を共有しました'
                 return
             else
-                redirect_back(fallback_location: new_zoom_url, notice: "投票失敗")
+                redirect_back(fallback_location: new_zoom_url, alert: "投票失敗")
             end
         else
-            redirect_to "/zooms/new", notice: "セッティングされた飲み会が無効です"
+            redirect_to "/zooms/new", alert: "セッティングされた飲み会が無効です"
         end
     end
 
@@ -40,12 +41,12 @@ class RecipesController < ApplicationController
                     @recipe.zoom_schedules = [@zoom]
                 end
                 session[:uuid].clear
-                redirect_to "/zoom/list/#{@zoom.uuid}", notice: 'Recipe was successfully created.'
+                redirect_to "/zoom/list/#{@zoom.uuid}", notice: 'みんなとレシピを共有しました'
             else
                 render :new
             end
         else
-            render("zoom/new")
+            redirect_to "/zooms/new", alert: "セッティングされた飲み会が無効です"
         end
     end
 

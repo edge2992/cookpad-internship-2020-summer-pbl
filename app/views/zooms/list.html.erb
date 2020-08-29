@@ -1,6 +1,5 @@
 <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer">
 </script>
-<p id="notice"><%= notice %></p>
 <div class="highlight-clean">
   <div class="container">
     <div class="intro">
@@ -31,7 +30,7 @@
             data-url=<%= "https://minnadecooked.herokuapp.com/zoom/list/#{@zoom.uuid}" %> data-color="default"
             data-size="large" data-count="false" style="display: none;"></div>
           </br>
-          <%= link_to 'Back', zooms_path %>
+          <%= link_to '他のレシピを見る', recipes_path %>
 
       </div>
     </div>

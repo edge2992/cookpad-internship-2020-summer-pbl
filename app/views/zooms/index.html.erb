@@ -1,27 +1,27 @@
 <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>リモート居酒屋「みんなでクック」予約一覧ページ</h1>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>created_at</th>
-                                    <th>hash</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                              <% @zooms.each do |zoom| %>
-                                <tr>
-                                  <td><%= link_to zoom.created_at, "/zoom/list/#{zoom.uuid}" %></td>
-                                  <td><%= zoom.uuid %></td>
-                                </tr>
-                              <% end %>
-                            </tbody>
-                        </table>
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>リモート居酒屋「みんなでクック」予約一覧ページ</h1>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>created_at</th>
+                                <th>hash</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @zooms.each do |zoom| %>
+                            <tr>
+                                <td><%= link_to zoom.created_at, "/zoom/list/#{zoom.uuid}" %></td>
+                                <td><%= zoom.uuid %></td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</div>

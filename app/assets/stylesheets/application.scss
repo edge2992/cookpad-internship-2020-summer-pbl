@@ -16,6 +16,19 @@
 
  @import "bootstrap";
 
+ .notifications {
+  color: $white;
+  text-align: center;  
+
+  .notice {
+    background-color: lightBlue;
+  }
+
+  .alert {
+    background-color: lightcoral;
+  }
+}
+
 
  .navigation-clean {
     background: #fff;
