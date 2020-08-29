@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
             unless params[:id].blank?
                 Recipe.find(params[:id]).increment!(:frequency, 1)
                 zoom.zoom_recipes.where(recipe_id: params[:id]).first.increment!(:frequency, 1)
-                redirect_to "/zoom/list/#{zoom.uuid}", notice: 'みんなとおつまみ作成予定を共有しました'
+                redirect_to "/zooms/list/#{zoom.uuid}", notice: 'みんなとおつまみ作成予定を共有しました'
                 return
             else
                 redirect_back(fallback_location: new_zoom_url, alert: "投票失敗")
@@ -41,7 +41,7 @@ class RecipesController < ApplicationController
                     @recipe.zoom_schedules = [@zoom]
                 end
                 session[:uuid].clear
-                redirect_to "/zoom/list/#{@zoom.uuid}", notice: 'みんなとレシピを共有しました'
+                redirect_to "/zooms/list/#{@zoom.uuid}", notice: 'みんなとレシピを共有しました'
             else
                 render :new
             end

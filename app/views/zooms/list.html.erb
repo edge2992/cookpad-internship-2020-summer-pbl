@@ -23,15 +23,14 @@
           <p class="text-center">仲間と一緒に同じレシピでおつまみ作成に挑戦しよう。オンライン上でも同じ料理を味わえるかも？</br></p>
           <%= render 'recipelist', increment_form: @increment_form, recipes: @recipes, zoom: @zoom %>
           </br>
-          <p>または、<%= link_to '自分のオススメおつまみレシピをみんなと共有する', new_recipe_path %></p>
+          <p>または、<%= link_to '自分のオススメおつまみレシピをみんなと共有する', "/recipes/new" %></p>
           </br>
           <h2>シェア</h2>
           <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3"
             data-url=<%= "https://minnadecooked.herokuapp.com/zoom/list/#{@zoom.uuid}" %> data-color="default"
             data-size="large" data-count="false" style="display: none;"></div>
           </br>
-          <%= link_to '他のレシピを見る', recipes_path %>
-
+          <%= link_to '他のレシピを見る', "/recipes" %>
       </div>
     </div>
   </div>

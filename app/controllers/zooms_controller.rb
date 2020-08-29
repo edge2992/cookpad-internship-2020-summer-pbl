@@ -11,12 +11,19 @@ class ZoomsController < ApplicationController
 
     def share
         @zoom = ZoomSchedule.find_by(uuid: params[:uuid]) 
+        unless @zoom
+            redirect_to "/zooms/new", alert: "セッティングされた飲み会が無効です"
+        end
     end
 
     def list
         @zoom = ZoomSchedule.find_by(uuid: params[:uuid])
-        @zoom_url = URI.extract(@zoom.text, %w[http https]).first
-        @recipes = @zoom.recipes.order(frequency: "DESC")
+        if @zoom
+            @zoom_url = URI.extract(@zoom.text, %w[http https]).first
+            @recipes = @zoom.recipes.order(frequency: "DESC")
+        else
+            redirect_to "/zooms/new", alert: "セッティングされた飲み会が無効です"
+        end
     end
 
 
@@ -34,7 +41,7 @@ class ZoomsController < ApplicationController
             redirect_to new_zoom_url, alert: "Zoomセッテイングに失敗しました"
             return
         end
-        redirect_to "/zoom/share/#{@zoom.uuid}"
+        redirect_to "/zooms/share/#{@zoom.uuid}"
     end
 
     private
