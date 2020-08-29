@@ -17,6 +17,8 @@ class ZoomsController < ApplicationController
     end
 
     def list
+        session[:uuid] = params[:uuid]
+        @recipe_form = RecipeCreateForm.new
         @zoom = ZoomSchedule.find_by(uuid: params[:uuid])
         if @zoom
             @zoom_url = URI.extract(@zoom.text, %w[http https]).first

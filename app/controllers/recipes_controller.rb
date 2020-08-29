@@ -33,17 +33,21 @@ class RecipesController < ApplicationController
 
         unless session[:uuid].blank?
             if @recipe_form.valid?
-                @recipe = Recipe.new(@recipe_form.to_attributes)
-                #TODO: refも更新しているのでそれも考慮する
-                Recipe.transaction do
-                    @recipe.save!
-                    @zoom = ZoomSchedule.find_by!(uuid: session[:uuid])
-                    @recipe.zoom_schedules = [@zoom]
+                #TODO: すでにとうろくされているかどうかを確認する
+                @recipe = Recipe.find_by(@recipe_form.to_attributes)
+                @zoom = ZoomSchedule.find_by(uuid: session[:uuid])
+
+                logger.debug(@recipe)
+                if @recipe.blank?
+                    #　登録がなかった場合
+                    @recipe = Recipe.new(@recipe_form.to_attributes)
+                    @recipe.save   
                 end
+                @recipe.zoom_schedules = [@zoom]
                 session[:uuid].clear
                 redirect_to "/zooms/list/#{@zoom.uuid}", notice: 'みんなとレシピを共有しました'
             else
-                render :new
+                redirect_to "/zooms/list/#{session[:uuid]}", alert: '入力が無効です'
             end
         else
             redirect_to "/zooms/new", alert: "セッティングされた飲み会が無効です"
@@ -56,6 +60,17 @@ class RecipesController < ApplicationController
 
     private
     def recipe_form_params
-        params.require(:recipe).permit(:title, :url)
+        params.require(:recipe).permit(:url)
+    end
+
+    private
+    def get_uuid_from_referer
+        before = Rails.application.routes.recognize_path(request.referer)
+        if before[:uuid].blank?
+            flash.now[:alert] = 'セッティングされた飲み会が無効です'
+            redirect_to "/zooms/new", alert: "セッティングされた飲み会が無効です"
+        else
+            before[:uuid]
+        end
     end
 end

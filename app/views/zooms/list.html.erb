@@ -23,7 +23,7 @@
           <p class="text-center">仲間と一緒に同じレシピでおつまみ作成に挑戦しよう。オンライン上でも同じ料理を味わえるかも？</br></p>
           <%= render 'recipelist', increment_form: @increment_form, recipes: @recipes, zoom: @zoom %>
           </br>
-          <p>または、<%= link_to '自分のオススメおつまみレシピをみんなと共有する', "/recipes/new" %></p>
+          <%= render 'recipes/form', recipe_form: @recipe_form %>
           </br>
           <h2>シェア</h2>
           <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3"

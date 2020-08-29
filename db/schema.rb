@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_033304) do
+ActiveRecord::Schema.define(version: 2020_08_29_111654) do
 
   create_table "recipes", force: :cascade do |t|
-    t.string "title"
     t.string "url"
     t.integer "frequency"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["url"], name: "index_recipes_on_url", unique: true
   end
 
   create_table "zoom_recipes", force: :cascade do |t|

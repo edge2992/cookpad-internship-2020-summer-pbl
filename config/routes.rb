@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   # recipe関連
   get "recipes", to: 'recipes#index'
   post "recipes", to: "recipes#create"
-  get "recipes/new", to: "recipes#new"
   post 'recipes/poll', to: 'recipes#poll'
 
   root 'zooms#new'

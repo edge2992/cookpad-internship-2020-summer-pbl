@@ -3,20 +3,17 @@ require 'net/http'
 class RecipeCreateForm
     include ActiveModel::Model
   
-    attr_accessor :title, :url
+    attr_accessor :url
 
-    validates :title, presence: true, length: { maximum: 255 }
     validates :url, presence: true, length: { maximum: 255 }
     validate :validate_url
   
     def apply(params)
-        @title = params[:title]
         @url = params[:url]
     end
 
     def to_attributes
         {
-            title: @title,
             url: @url
         }
     end
@@ -38,7 +35,6 @@ class RecipeCreateForm
           end
         }
         !url.nil? && !url.empty? && (Net::HTTPSuccess === res.call(url) || Net::HTTPRedirection === res.call(url))
-      end
-
+    end
 
   end
