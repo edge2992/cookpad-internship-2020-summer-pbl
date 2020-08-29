@@ -24,23 +24,22 @@
         </div>
     </div>
     <div class="contact-clean" style="background-color: rgb(255,255,255);">
-        <%= form_with scope: :zoom, url: zooms_path, local: true do |form| %>  
-            <h2 class="text-center">飲み会をホストする</h2>
-               <p class="text-center">
-               例：</br></br>
-      Kazuya Isawaさんがあなたを予約されたZoomミーティングに招待しています。</br>
+        <%= form_with scope: :zoom, url: zooms_path, local: true do |form| %>
+        <h2 class="text-center">飲み会をホストする</h2>
+        <p class="text-center">
+            例：</br></br>
+            Kazuya Isawaさんがあなたを予約されたZoomミーティングに招待しています。</br>
 
-      トピック: マイミーティング</br>
-      時間: 2020年8月26日 03:00 PM 大阪、札幌、東京</br>
+            トピック: マイミーティング</br>
+            時間: 2020年8月26日 03:00 PM 大阪、札幌、東京</br>
 
-      Zoomミーティングに参加する</br>
-      https://us02web.zoom.us/j/84064231812?pwd=SzNFbS9uSjVRQzE5TU5RL0VnOXUyZz</br>
+            Zoomミーティングに参加する</br>
+            https://us02web.zoom.us/j/84064231812?pwd=SzNFbS9uSjVRQzE5TU5RL0VnOXUyZz</br>
 
-      ミーティングID: 840 6423 1813</br>
-      パスコード: n7xEhaa</br>
-      </p>
-            <div class="form-group text-center""><%= form.text_area :text, rows: "14", cols: "auto"%></div>
-            <div class="form-group text-center"><%= form.submit "シェフにおつまみレシピを聞く", class: "btn btn-primary" %></div>
+            ミーティングID: 840 6423 1813</br>
+            パスコード: n7xEhaa</br>
+        </p>
+        <div class="form-group text-center""><%= form.text_area :text, rows: "14", cols: "auto"%></div>
+            <div class=" form-group text-center"><%= form.submit "シェフにおつまみレシピを聞く", class: "btn btn-primary" %></div>
         <% end %>
     </div>
-
