@@ -239,6 +239,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable
   bootsnap (>= 1.4.2)
   bootstrap (~> 4.1.1)
   byebug
