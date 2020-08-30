@@ -49,6 +49,9 @@ class ZoomsController < ApplicationController
                 @zoom.recipes = recipes
             end
         else
+            # recipe_id = Recipe.pluck(:id).sample(1).first
+            # @recipe = Recipe.find(recipe_id)
+            # render :new
             redirect_to "/zooms/new", alert: "Zoomセッテイングに失敗しました"
             return
         end

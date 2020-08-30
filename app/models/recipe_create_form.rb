@@ -1,12 +1,14 @@
 require 'net/http'
+require 'addressable/uri'
 
 class RecipeCreateForm
-    include ActiveModel::Model
+    include ActiveModel::Validations
   
     attr_accessor :url
 
     validates :url, presence: true, length: { maximum: 255 }
     validate :validate_url
+    validate :recipe_cite_url?
   
     def apply(params)
         @url = params[:url]
@@ -16,6 +18,18 @@ class RecipeCreateForm
         {
             url: @url
         }
+    end
+
+    private def recipe_cite_url?
+      uri = Addressable::URI.parse(@url)
+      unless uri.present?
+        # errors.add(:validate_url, '無効なURLです')
+      else        
+        host = uri.host.downcase
+        unless Recipecite.find_by(host: host)
+          errors.add(:is_not_recipecite, "レシピサイトとして登録されていません")
+        end
+      end
     end
 
     private def validate_url

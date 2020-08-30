@@ -19,7 +19,7 @@
         <div class="text-center">
           <h2>「みんなでクック」のシェフ一押しのレシピ</h2>
             <p>仲間と一緒に同じレシピでおつまみ作成に挑戦しよう。オンライン上でも同じ料理を味わえるかも？</br></p>
-            <%= render 'recipelist', increment_form: @increment_form, recipes: @recipes, zoom: @zoom %>
+            <%= render 'zooms/recipelist', recipes: @recipes, zoom: @zoom %>
         </div>
         <%= link_to '他のレシピを見る', "/recipes" %>
         </br>

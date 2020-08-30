@@ -47,7 +47,15 @@ class RecipesController < ApplicationController
                 session[:uuid].clear
                 redirect_to "/zooms/list/#{@zoom.uuid}", notice: 'みんなとレシピを共有しました'
             else
-                redirect_to "/zooms/list/#{session[:uuid]}", alert: '入力が無効です'
+                # @zoom = ZoomSchedule.find_by(uuid: session[:uuid])
+                # @zoom_url = URI.extract(@zoom.text, %w[http https]).first
+                # @recipes = @zoom.recipes.order(frequency: "DESC")
+                # render template: "zooms/list", zooms: "recipelist"
+                if @recipe_form.errors[:is_not_recipecite].any?
+                    redirect_to "/zooms/list/#{session[:uuid]}", alert: 'レシピサイトとしてこのサイトに登録されていません'
+                else
+                    redirect_to "/zooms/list/#{session[:uuid]}", alert: 'みんなとレシピを共有できませんでした'
+                end
             end
         else
             redirect_to "/zooms/new", alert: "セッティングされた飲み会が無効です"
@@ -73,4 +81,25 @@ class RecipesController < ApplicationController
             before[:uuid]
         end
     end
+
+    def recipe_rank(recipe)
+        if recipe
+            case recipe.frequency
+            when 0..WORST_SCORE
+                "-"
+            when WORST_SCORE+1..FORTH_SCORE
+                "★"*1 
+            when FORTH_SCORE+1..THIRD_SCORE
+                "★"*2
+            when THIRD_SCORE+1..SECOND_SCORE
+                "★"*3 
+            when SECOND_SCORE+1..BEST_SCORE
+                "★"*4 
+            else
+                "★"*5
+            end
+        end
+    end
+
+    helper_method :recipe_rank
 end

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # zoom関連
   # get "zooms", to: 'zooms#index'
   post "zooms", to: 'zooms#create'
+  get "zooms", to: 'zooms#new'
   get "zooms/new", to: 'zooms#new'
 
   get 'zooms/list/:uuid', to: 'zooms#list'
