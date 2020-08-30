@@ -6,9 +6,9 @@
                     <h1>「みんなでクック」飲み会準備ページ</h1>
                     <p>イベントが作成されました。以下のURLをメール等でみんなに知らせてあげましょう。</br>このURLページで「みんなでクック」のシェフがみなさんにおすすめのおつまみレシピをお伝えします。</p>
                     <textarea rows="1" cols="80"
-                        onfocus="this.select();"><%= "https://minnadecooked.herokuapp.com/zooms/list/#{@zoom.uuid}" %></textarea>
+                        onfocus="this.select();"><%= "https://minacook.com/zooms/list/#{@zoom.uuid}" %></textarea>
                     <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3"
-                        data-url=<%= "https://minnadecooked.herokuapp.com/zoom/list/#{@zoom.uuid}" %>
+                        data-url=<%= "https://minacook.com/zoom/list/#{@zoom.uuid}" %>
                         data-color="default" data-size="large" data-count="false" style="display: none;"></div>
                     </br>
                     <%= link_to '飲み会の会場に移動', "/zooms/list/#{@zoom.uuid}" %>

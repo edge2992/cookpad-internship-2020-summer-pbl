@@ -6,8 +6,24 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
+  <% if Rails.env.production? %>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176750000-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-176750000-1');
+  </script>
+  <% end %>
+
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
 </head>
 
 <body>
@@ -34,7 +50,8 @@
 
   <footer id="footer">
     <div style="background: white; text-align: center; margin: 0px; padding:10px">
-      <p style="color:grey; font-family:raleway">© 2020 <a href="https://twitter.com/edge2992" style="color:grey">edge2992</a></p>
+      <p style="color:grey; font-family:raleway">© 2020 <a href="https://twitter.com/edge2992"
+          style="color:grey">edge2992</a></p>
     </div>
   </footer>
 </body>
