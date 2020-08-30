@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_29_111654) do
+ActiveRecord::Schema.define(version: 2020_08_30_093024) do
+
+  create_table "recipecites", force: :cascade do |t|
+    t.string "host"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["host"], name: "index_recipecites_on_host", unique: true
+  end
 
   create_table "recipes", force: :cascade do |t|
     t.string "url"

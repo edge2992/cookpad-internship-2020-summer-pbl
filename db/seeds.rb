@@ -5,13 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require "csv"
 
-[
-    ["https://entabe.jp/26419/yakitori-can-cheese-dak-galbi-easy-recipe", 10],
-    ["https://cookpad.com/recipe/5465688", 3],
-    ["http://ainoouchigohan.blog.jp/archives/1065020112.html", 1],
-    ["https://www.asahibeer.co.jp/enjoy/recipe/search/recipe.psp.html?CODE=0000001890", 8]
-].each do |url, frequency|
-    Recipe.create!({url: url, frequency: frequency})
+CSV.foreach("db/seeds/csv/seed_recipe.csv") do |row|
+    Recipe.create(url: row[1], frequency: SecureRandom.random_number(10))
 end
 
+CSV.foreach("db/seeds/csv/seed_host.csv") do |row|
+    Recipecite.create(host: row[1])
+end

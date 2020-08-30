@@ -1,0 +1,2 @@
+class Recipecite < ApplicationRecord
+end
