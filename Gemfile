@@ -29,7 +29,7 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 
 gem 'will_paginate'
-gem 'bootstrap-will_paginate'
+gem 'will_paginate-bootstrap4'
 
 
 # Reduces boot times through caching; required in config/boot.rb

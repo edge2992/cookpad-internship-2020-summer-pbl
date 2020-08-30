@@ -11,7 +11,7 @@
         <tbody>
             <% recipes.each do |recipe| %>
             <tr>
-                <td><%= button_to 'このレシピに挑戦！', {controller: 'recipes', action: 'poll'}, {method: :post, :params => {id: recipe.id, uuid: zoom.uuid}} %> </td>
+                <td><%= button_to 'このレシピに挑戦！',  {controller: 'recipes', action: 'poll'}, {method: :post, :params => {id: recipe.id, uuid: zoom.uuid}, class: "btn btn-info"} %> </td>
                 <td>
                     <iframe class="hatenablogcard" style="width:100%;height:155px;max-width:680px;"
                          src="https://hatenablog-parts.com/embed?url=<%= recipe.url %>"

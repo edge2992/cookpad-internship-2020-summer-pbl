@@ -3,38 +3,40 @@
 <div class="highlight-clean">
   <div class="container">
     <div class="intro">
-      <h2 class="text-center">リモート居酒屋「みんなでクック」会場</h2>
-      <p class="text-center">リモート居酒屋「みんなでクック」は、オンラインでの飲み会の参加者におつまみレシピを伝授する居酒屋です。
-        </br>参加者がそれぞれレシピを作ってオンラインでできた料理をシェアしよう！
-      </p>
       <div class="text-center">
+        <h2>リモート居酒屋「みんなでクック」会場</h2>
         <%= image_tag 'drinking_on_zoom.jpg', :size => "400x300" %>
-        <h2>Zoom招待</h3>
+        <p>リモート居酒屋「みんなでクック」は、オンラインでの飲み会の参加者におつまみレシピを伝授する居酒屋です。
+          </br>参加者がそれぞれレシピを作ってオンラインでできた料理をシェアしよう！
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <h2>「みんなでクック」のシェフ一押しのレシピ</h2>
+            <p>仲間と一緒に同じレシピでおつまみ作成に挑戦しよう。オンライン上でも同じ料理を味わえるかも？</br></p>
+            <%= render 'recipelist', increment_form: @increment_form, recipes: @recipes, zoom: @zoom %>
+        </div>
+        <%= link_to '他のレシピを見る', "/recipes" %>
+        </br>
+        <%= render 'recipes/form', recipe_form: @recipe_form %>
+        </br>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="intro">
+      <div class="text-center">
+        <h3>Zoom招待</h3>
           <p>
             <a href="<%= @zoom_url %>"><%= @zoom_url %></a>
             </br></br>
           </p>
           <p><%= @zoom.text %></p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="highlight-clean">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h2 class="text-center">「みんなでクック」のシェフ一押しのレシピ</h3>
-          <p class="text-center">仲間と一緒に同じレシピでおつまみ作成に挑戦しよう。オンライン上でも同じ料理を味わえるかも？</br></p>
-          <%= render 'recipelist', increment_form: @increment_form, recipes: @recipes, zoom: @zoom %>
-          </br>
-          <%= render 'recipes/form', recipe_form: @recipe_form %>
-          </br>
-          <h2>シェア</h2>
-          <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3"
-            data-url=<%= "https://minnadecooked.herokuapp.com/zoom/list/#{@zoom.uuid}" %> data-color="default"
-            data-size="large" data-count="false" style="display: none;"></div>
-          </br>   
-          <%= link_to '他のレシピを見る', "/recipes" %>
       </div>
     </div>
   </div>
