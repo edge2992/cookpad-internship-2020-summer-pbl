@@ -11,10 +11,10 @@
 </head>
 
 <body>
-<div class="notifications">
-  <% flash.each do |message_type, message| %>
-  <%= content_tag :div, message, class: message_type %>
-  <% end %>
+  <div class="notifications">
+    <% flash.each do |message_type, message| %>
+    <%= content_tag :div, message, class: message_type %>
+    <% end %>
   </div>
   <nav class="navbar navbar-light navbar-expand-md navigation-clean">
     <div class="container"><a class="navbar-brand" href="/">リモート居酒屋「みんなでクック」</a><button data-toggle="collapse"
@@ -30,6 +30,13 @@
     </div>
   </nav>
   <%= yield %>
+
+
+  <footer id="footer">
+    <div style="background: white; text-align: center; margin: 0px; padding:10px">
+      <p style="color:grey; font-family:raleway">© 2020 <a href="https://twitter.com/edge2992" style="color:grey">edge2992</a></p>
+    </div>
+  </footer>
 </body>
 
 </html>

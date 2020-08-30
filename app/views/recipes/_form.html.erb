@@ -3,7 +3,7 @@
 <% if recipe_form.errors.any? %>
 <div id="error_explanation">
   <h2>
-  <%= pluralize(recipe_form.errors.count, "error") %> prohibited this recipe from being saved:
+    <%= pluralize(recipe_form.errors.count, "error") %> prohibited this recipe from being saved:
   </h2>
 
   <ul>
@@ -14,13 +14,25 @@
 </div>
 <% end %>
 
-<p>
-  <%= form.label :または自分のおすすめのおつまみレシピをみんなと共有する %>
-  <br>
-  <%= form.text_area :url , placeholder: "レシピのurlを記入"%>
-</p>
+<div class="text-center">
+<h2>自分のおすすめのおつまみレシピをみんなと共有する</h2>
+<p>シェフのおすすめレシピに追加されてみんなと共有されます</p>
+</div>
 
-<p>
-  <%= form.submit "レシピをシェアする"%>
-</p>
+<form class="search-form">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="fa fa-search"></i>
+      </span>
+    </div>
+    <%# <input class="form-control" type="text" placeholder="レシピのurlを入力する"> %>
+    <%= form.url_field :url , placeholder: "レシピのurlを入力する", class: "form-control"%>
+    <div class="input-group-append">
+      <%= form.submit "レシピをシェアする", class: "btn btn-light"%>
+      <%# <button class="btn btn-light" type="button">レシピをシェア</button> %>
+    </div>
+  </div>
+</form>
+
 <% end %>
