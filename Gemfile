@@ -36,6 +36,8 @@ gem 'addressable'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'high_voltage'
+      
 
 group :production do
   gem 'pg'
