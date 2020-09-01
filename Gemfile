@@ -38,7 +38,9 @@ gem 'addressable'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'high_voltage'
       
-
+#　SEO対策
+gem 'meta-tags'
+gem 'sitemap_generator'
 group :production do
   gem 'pg'
 end
